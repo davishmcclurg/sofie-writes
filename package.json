@@ -5,8 +5,9 @@
   "description": "sofie writes",
   "main": "",
   "scripts": {
+    "dev": "webpack-dev-server --progress --colors",
     "build": "webpack -p --config webpack.production.config.js",
-    "dev": "webpack-dev-server --progress --colors"
+    "deploy": "git push origin `git subtree split --prefix dist master`:gh-pages"
   },
   "author": "",
   "license": "ISC",
