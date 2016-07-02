@@ -1,25 +1,16 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+import { render } from 'react-dom'
+import { createStore, combineReducers } from 'redux'
+import { Provider, connect } from 'react-redux'
 
-import * as api from './api'
+import menu from './menu'
 
-api.sections().then(sections => {
-  sections.forEach(section => {
-    console.log(section)
-  })
-})
-
-const menu = [
-  {
-    text: 'Ask Sofie',
-    image: '',
-    link: './'
-  }
-]
+const reducers = combineReducers({ menu })
+const store = createStore(reducers, window.devToolsExtension && window.devToolsExtension())
 
 const MenuItem = (props) => <a href={props.link}>{props.text}</a>
 
-const SofieWrites = (props) => {
+const App = (props) => {
   return (
     <div>
       <h1>sofie writes</h1>
@@ -28,10 +19,16 @@ const SofieWrites = (props) => {
   )
 }
 
+const SofieWrites = connect(
+  (state) => ({ menu: state.menu.toJS() })
+)(App)
+
 const div = document.createElement('div')
 document.body.appendChild(div)
 
-ReactDOM.render(
-  <SofieWrites menu={menu} />,
+render(
+  <Provider store={store}>
+    <SofieWrites />
+  </Provider>,
   div
 )

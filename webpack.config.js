@@ -13,6 +13,9 @@ module.exports = {
     new webpack.NoErrorsPlugin(),
     new HtmlWebpackPlugin({
       title: 'sofie writes'
+    }),
+    new webpack.ProvidePlugin({
+      Immutable: 'immutable'
     })
   ],
   devtool: 'source-map',
@@ -25,7 +28,7 @@ module.exports = {
   },
   output: {
     path: './dist',
-    publicPath: './',
+    publicPath: '/',
     filename: 'app.bundle.js'
   },
   module: {
@@ -33,7 +36,7 @@ module.exports = {
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        loader: 'babel-loader'
+        loaders: ['react-hot-loader', 'babel-loader']
       }
     ]
   }

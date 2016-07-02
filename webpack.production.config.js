@@ -12,6 +12,9 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       title: 'sofie writes'
+    }),
+    new webpack.ProvidePlugin({
+      Immutable: 'immutable'
     })
   ],
   resolve: {
@@ -27,7 +30,7 @@ module.exports = {
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        loader: 'babel-loader'
+        loaders: ['babel-loader']
       }
     ]
   }
