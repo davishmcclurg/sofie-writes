@@ -1,12 +1,15 @@
+var path = require('path')
 var webpack = require('webpack')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
+
+var SRC = path.resolve(__dirname, 'src')
 
 module.exports = {
   entry: [
     'webpack/hot/dev-server',
     'webpack-dev-server/client?http://localhost:8080/',
     'babel-polyfill',
-    './src/app.jsx'
+    SRC + '/app.jsx'
   ],
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
@@ -15,16 +18,25 @@ module.exports = {
       title: 'sofie writes'
     }),
     new webpack.ProvidePlugin({
+      React: 'react',
       Immutable: 'immutable'
     })
   ],
   devtool: 'source-map',
   watch: true,
   devServer: {
-    hot: true
+    hot: true,
+    historyApiFallback: true
   },
   resolve: {
-    extensions: ['', '.js', '.jsx']
+    extensions: ['', '.js', '.jsx'],
+    alias: {
+      src: SRC,
+      components: SRC + '/components',
+      reducers: SRC + '/reducers',
+      styles: SRC + '/styles',
+      images: SRC + '/images'
+    }
   },
   output: {
     path: './dist',
@@ -37,6 +49,15 @@ module.exports = {
         test: /\.jsx?$/,
         exclude: /node_modules/,
         loaders: ['react-hot-loader', 'babel-loader']
+      },
+      {
+        test: /\.css$/,
+        loaders: ['style-loader', 'css-loader?modules&importLoaders=1&localIdentName=[path][name]---[local]---[hash:base64:5]']
+      },
+      {
+        test: /\.png$/,
+        exclude: /node_modules/,
+        loaders: ['url-loader?limit=10000', 'image-webpack-loader?bypassOnDebug&optimizationLevel=7']
       }
     ]
   }

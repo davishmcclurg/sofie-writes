@@ -1,34 +1,50 @@
-import React from 'react'
 import { render } from 'react-dom'
-import { createStore, combineReducers } from 'redux'
-import { Provider, connect } from 'react-redux'
+import { combineReducers, createStore, applyMiddleware, compose } from 'redux'
+import { Provider } from 'react-redux'
+import thunk from 'redux-thunk'
 
-import menu from './menu'
+import { Router, Route, IndexRoute, hashHistory } from 'react-router'
+import { syncHistoryWithStore, routerReducer as routing } from 'react-router-redux'
 
-const reducers = combineReducers({ menu })
-const store = createStore(reducers, window.devToolsExtension && window.devToolsExtension())
+import menu from 'reducers/menu'
 
-const MenuItem = (props) => <a href={props.link}>{props.text}</a>
+import Main from 'components/Main'
+import Index from 'components/Index'
+import AskSofie from 'components/AskSofie'
+import Professional from 'components/Professional'
+import Writing from 'components/Writing'
+import Music from 'components/Music'
+import Art from 'components/Art'
+import Headshots from 'components/Headshots'
+import Contact from 'components/Contact'
 
-const App = (props) => {
-  return (
-    <div>
-      <h1>sofie writes</h1>
-      {props.menu.map((item, index) => <MenuItem {...item} key={index} />)}
-    </div>
+const store = createStore(
+  combineReducers({ menu, routing }),
+  compose(
+    applyMiddleware(thunk),
+    window.devToolsExtension ? window.devToolsExtension() : f => f
   )
-}
+)
 
-const SofieWrites = connect(
-  (state) => ({ menu: state.menu.toJS() })
-)(App)
+const history = syncHistoryWithStore(hashHistory, store)
 
 const div = document.createElement('div')
 document.body.appendChild(div)
 
 render(
   <Provider store={store}>
-    <SofieWrites />
+    <Router history={history}>
+      <Route path="/" component={Main}>
+        <IndexRoute component={Index} />
+        <Route path="ask-sofie" component={AskSofie} />
+        <Route path="professional" component={Professional} />
+        <Route path="writing" component={Writing} />
+        <Route path="music" component={Music} />
+        <Route path="art" component={Art} />
+        <Route path="headshots" component={Headshots} />
+        <Route path="contact" component={Contact} />
+      </Route>
+    </Router>
   </Provider>,
   div
 )
