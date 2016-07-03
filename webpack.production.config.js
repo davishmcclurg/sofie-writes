@@ -34,8 +34,8 @@ module.exports = {
     }
   },
   output: {
-    path: './dist/',
-    publicPath: './',
+    path: './dist',
+    publicPath: '/',
     filename: 'app.bundle.js'
   },
   module: {
@@ -51,7 +51,6 @@ module.exports = {
       },
       {
         test: /\.png$/,
-        exclude: /node_modules/,
         loaders: ['url-loader?limit=10000', 'image-webpack-loader?bypassOnDebug&optimizationLevel=7']
       }
     ]
