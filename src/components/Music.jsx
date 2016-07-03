@@ -1,7 +1,5 @@
 // upload audio/video
 
-export default (props) => {
-  return (
-    <p>Music</p>
-  )
-}
+export default () => (
+  <p>Music</p>
+)

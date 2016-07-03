@@ -1,7 +1,5 @@
 // audio/video gallery with link to tumblr
 
-export default (props) => {
-  return (
-    <p>Art</p>
-  )
-}
+export default () => (
+  <p>Art</p>
+)

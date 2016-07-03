@@ -1,7 +1,5 @@
 // resume
 
-export default (props) => {
-  return (
-    <p>Professional</p>
-  )
-}
+export default () => (
+  <p>Professional</p>
+)

@@ -1,7 +1,5 @@
 // writing
 
-export default (props) => {
-  return (
-    <p>Writing</p>
-  )
-}
+export default () => (
+  <p>Writing</p>
+)
