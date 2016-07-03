@@ -1,5 +1,7 @@
 // resume
 
-export default () => (
-  <p>Professional</p>
-)
+import page from 'components/page'
+
+export default page('Professional', () => (
+  <p>resume...</p>
+))

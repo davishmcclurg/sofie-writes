@@ -1,5 +1,7 @@
 // writing
 
-export default () => (
-  <p>Writing</p>
-)
+import page from 'components/page'
+
+export default page('Writing', () => (
+  <p>writing...</p>
+))

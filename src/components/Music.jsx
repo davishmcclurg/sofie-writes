@@ -1,5 +1,7 @@
 // upload audio/video
 
-export default () => (
-  <p>Music</p>
-)
+import page from 'components/page'
+
+export default page('Music', () => (
+  <p>music...</p>
+))

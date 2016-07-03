@@ -3,5 +3,5 @@
 import page from 'components/page'
 
 export default page('Contact', () => (
-  <p>contact</p>
+  <p>contact...</p>
 ))
