@@ -1,6 +1,7 @@
 var path = require('path')
 var webpack = require('webpack')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 var SRC = path.resolve(__dirname, 'src')
 
@@ -19,7 +20,8 @@ module.exports = {
     new webpack.ProvidePlugin({
       React: 'react',
       Immutable: 'immutable'
-    })
+    }),
+    new ExtractTextPlugin('styles.css')
   ],
   resolve: {
     extensions: ['', '.js', '.jsx'],
@@ -45,7 +47,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        loaders: ['style-loader', 'css-loader?modules&importLoaders=1&localIdentName=[path][name]---[local]---[hash:base64:5]']
+        loader: ExtractTextPlugin.extract('style-loader', 'css-loader?modules&importLoaders=1&localIdentName=[path][name]---[local]---[hash:base64:5]')
       },
       {
         test: /\.png$/,
