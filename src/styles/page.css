@@ -1,0 +1,10 @@
+.container {
+  padding: 0 50px;
+}
+
+.heading {
+  font-size: 48px;
+  font-weight: normal;
+  line-height: 1;
+  color: #0c112d;
+}

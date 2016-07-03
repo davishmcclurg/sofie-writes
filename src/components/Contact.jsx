@@ -1,5 +1,7 @@
 // contact information and email form
 
-export default () => (
-  <p>Contact</p>
-)
+import page from 'components/page'
+
+export default page('Contact', () => (
+  <p>contact</p>
+))
