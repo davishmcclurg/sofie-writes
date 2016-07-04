@@ -6,7 +6,7 @@ import thunk from 'redux-thunk'
 import { Router, Route, IndexRoute, hashHistory } from 'react-router'
 import { syncHistoryWithStore, routerReducer as routing } from 'react-router-redux'
 
-import { createTimer } from 'src/timer'
+import { createTimer } from 'src/utils'
 
 import menu from 'reducers/menu'
 import pages, { addPages } from 'reducers/pages'
@@ -23,6 +23,8 @@ import Art from 'components/Art'
 import Headshots from 'components/Headshots'
 import Contact from 'components/Contact'
 
+import * as api from 'src/api'
+
 const store = createStore(
   combineReducers({ menu, pages, rotatingPhotos, askSofie, routing }),
   compose(
@@ -30,8 +32,6 @@ const store = createStore(
     window.devToolsExtension ? window.devToolsExtension() : f => f
   )
 )
-
-import * as api from 'src/api'
 
 const rotatingPhotosEntryId = '56B762Mw1iuW2OQ60cgS0Y'
 api.client.getEntries({ 'sys.id': rotatingPhotosEntryId }).then((entries) => {
@@ -54,10 +54,10 @@ api.client.getEntries({ content_type: pageContentTypeId }).then((entries) => {
 
 const history = syncHistoryWithStore(hashHistory, store)
 
+const timer = createTimer(() => store.dispatch(advanceImage()))
+
 const div = document.createElement('div')
 document.body.appendChild(div)
-
-const timer = createTimer(() => store.dispatch(advanceImage()))
 
 render(
   <Provider store={store}>
