@@ -5,12 +5,18 @@
 import { connect } from 'react-redux'
 
 import styles from 'styles/index.css'
+import defaultImage from 'images/rotating-photos.png'
 
-const Index = (props) => (
-  <div className={styles.index}>
-    <img src={props.currentImage} alt="rotating photos" />
-  </div>
-)
+const Index = (props) => {
+  const img = <img src={props.currentImage} alt="rotating photos" />
+  let container = img
+  if (props.currentImage !== defaultImage) {
+    container = (
+      <div className={styles.nonDefaultImageContainer}>{img}</div>
+    )
+  }
+  return <div className={styles.index}>{container}</div>
+}
 
 export default connect(
   (state) => ({ currentImage: state.rotatingPhotos.get('currentImage') })
