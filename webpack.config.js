@@ -19,7 +19,8 @@ module.exports = {
     }),
     new webpack.ProvidePlugin({
       React: 'react',
-      Immutable: 'immutable'
+      Immutable: 'immutable',
+      _: 'lodash/fp'
     })
   ],
   devtool: 'source-map',

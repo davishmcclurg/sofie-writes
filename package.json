@@ -68,7 +68,8 @@
     },
     "globals": {
       "React": true,
-      "Immutable": true
+      "Immutable": true,
+      "_": true
     },
     "rules": {
       "global-require": 0,
