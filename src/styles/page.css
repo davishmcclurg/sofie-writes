@@ -29,7 +29,8 @@ font-family: 'Roboto', sans-serif;
 }
 
 .headingContainer h1 {
-  font-family: 'Bungee Shade', cursive;
+  font-family: 'Bungee Outline', cursive;
+
   font-size: 96px;
   line-height: 1;
   margin: 0;
@@ -53,17 +54,17 @@ font-family: 'Roboto', sans-serif;
 }
 
 .headingContainer a {
-  display: block;
+  display: inline-block;
   margin-top: 48px;
   font-size: 48px;
   line-height: 1;
-  font-family: 'Bungee Hairline', cursive;
+  font-family: 'Londrina Solid', cursive;
   text-decoration: none;
-  color: #0c112d;
+  color: rgba(0, 0, 0, 0.15);
 }
 
 .headingContainer a:hover {
-  font-weight: bold;
+  color: #0c112d;
 }
 
 .contentContainer {
