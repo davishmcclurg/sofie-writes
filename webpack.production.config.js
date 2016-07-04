@@ -61,6 +61,10 @@ module.exports = {
       {
         test: /\.png$/,
         loaders: ['url-loader?limit=10000', 'image-webpack-loader?bypassOnDebug&optimizationLevel=7']
+      },
+      {
+        test: /\.json$/,
+        loader: 'json'
       }
     ]
   }

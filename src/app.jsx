@@ -7,6 +7,8 @@ import { Router, Route, IndexRoute, hashHistory } from 'react-router'
 import { syncHistoryWithStore, routerReducer as routing } from 'react-router-redux'
 
 import menu from 'reducers/menu'
+import pages, { addPages } from 'reducers/pages'
+import askSofie, { addEntries } from 'reducers/askSofie'
 import
   rotatingPhotos,
   { addImages, delayedStartRotation, stopRotation }
@@ -23,7 +25,7 @@ import Headshots from 'components/Headshots'
 import Contact from 'components/Contact'
 
 const store = createStore(
-  combineReducers({ menu, rotatingPhotos, routing }),
+  combineReducers({ menu, pages, rotatingPhotos, askSofie, routing }),
   compose(
     applyMiddleware(thunk),
     window.devToolsExtension ? window.devToolsExtension() : f => f
@@ -31,10 +33,24 @@ const store = createStore(
 )
 
 import * as api from 'src/api'
+
 const rotatingPhotosEntryId = '56B762Mw1iuW2OQ60cgS0Y'
 api.client.getEntries({ 'sys.id': rotatingPhotosEntryId }).then((entries) => {
   const images = entries.includes.Asset.map(i => i.fields.file.url)
   store.dispatch(addImages(images))
+})
+
+const askSofieContentTypeId = 'askSofie'
+api.client.getEntries({
+  content_type: askSofieContentTypeId,
+  order: '-sys.createdAt',
+}).then((entries) => {
+  store.dispatch(addEntries(entries.toPlainObject().items))
+})
+
+const pageContentTypeId = 'page'
+api.client.getEntries({ content_type: pageContentTypeId }).then((entries) => {
+  store.dispatch(addPages(entries.toPlainObject().items))
 })
 
 const history = syncHistoryWithStore(hashHistory, store)

@@ -72,10 +72,12 @@ font-family: 'Roboto', sans-serif;
   padding-left: 108px;
 }
 
-.contentContainer h2 {
+.contentContainer h1 {
   font-family: 'Londrina Solid', cursive;
   font-weight: normal;
   font-size: 48px;
+  line-height: 2;
+  margin: 0;
 }
 
 .contentContainer p {

@@ -1,7 +1,12 @@
 // resume
 
+import { connect } from 'react-redux'
+import Markdown from 'react-markdown'
+
 import page from 'components/page'
 
-export default page({ heading: 'Professional' }, () => (
-  <p>resume...</p>
-))
+const Professional = page({ heading: 'Professional' }, Markdown)
+
+export default connect(
+  (state) => ({ source: state.pages.getIn(['professional', 'fields', 'content'], 'Loading...') })
+)(Professional)

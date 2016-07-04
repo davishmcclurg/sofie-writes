@@ -24,10 +24,12 @@
     "html-webpack-plugin": "^2.21.0",
     "image-webpack-loader": "^1.8.0",
     "immutable": "^3.8.1",
+    "json-loader": "^0.5.4",
     "lodash-fp": "^0.10.4",
     "normalize.css": "^4.2.0",
     "react": "^15.1.0",
     "react-dom": "^15.1.0",
+    "react-markdown": "^2.3.0",
     "react-redux": "^4.4.5",
     "react-router": "^2.5.2",
     "react-router-redux": "^4.0.5",
@@ -77,6 +79,16 @@
       "semi": [
         2,
         "never"
+      ],
+      "new-cap": [
+        2,
+        {
+          "capIsNewExceptions": [
+            "Map",
+            "Set",
+            "List"
+          ]
+        }
       ]
     }
   }
