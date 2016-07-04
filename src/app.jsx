@@ -11,7 +11,7 @@ import pages, { addPages } from 'reducers/pages'
 import askSofie, { addEntries } from 'reducers/askSofie'
 import
   rotatingPhotos,
-  { addImages, delayedStartRotation, stopRotation }
+  { updateImages, delayedStartRotation, stopRotation }
 from 'reducers/rotatingPhotos'
 
 import Main from 'components/Main'
@@ -37,7 +37,7 @@ import * as api from 'src/api'
 const rotatingPhotosEntryId = '56B762Mw1iuW2OQ60cgS0Y'
 api.client.getEntries({ 'sys.id': rotatingPhotosEntryId }).then((entries) => {
   const images = entries.includes.Asset.map(i => i.fields.file.url)
-  store.dispatch(addImages(images))
+  store.dispatch(updateImages(images))
 })
 
 const askSofieContentTypeId = 'askSofie'
