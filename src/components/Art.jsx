@@ -2,6 +2,6 @@
 
 import page from 'components/page'
 
-export default page('Art', () => (
+export default page({ heading: 'Art' }, () => (
   <p>art...</p>
 ))

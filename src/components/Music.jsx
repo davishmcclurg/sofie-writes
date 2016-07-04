@@ -2,6 +2,6 @@
 
 import page from 'components/page'
 
-export default page('Music', () => (
+export default page({ heading: 'Music' }, () => (
   <p>music...</p>
 ))

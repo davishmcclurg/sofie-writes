@@ -2,6 +2,6 @@
 
 import page from 'components/page'
 
-export default page('Professional', () => (
+export default page({ heading: 'Professional' }, () => (
   <p>resume...</p>
 ))

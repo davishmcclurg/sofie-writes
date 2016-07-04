@@ -2,6 +2,6 @@
 
 import page from 'components/page'
 
-export default page('Contact', () => (
+export default page({ heading: 'Contact' }, () => (
   <p>contact...</p>
 ))

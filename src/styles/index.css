@@ -1,8 +1,13 @@
+.pageContainer {
+  composes: pageContainer from 'styles/page.css';
+  align-items: stretch;
+}
+
 .index img {
   display: block;
   width: 100%;
 }
 
 .nonDefaultImageContainer {
-  padding: 2% 5% 5%;
+  border: 10px double #0c112d;
 }

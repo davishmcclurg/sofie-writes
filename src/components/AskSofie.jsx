@@ -4,7 +4,7 @@
 
 import page from 'components/page'
 
-export default page('Ask Sofie', () => (
+export default page({ heading: 'Ask Sofie' }, () => (
   <div>
     <h2>On September 26, Sick of Stupid Boys wrote</h2>
     <p>Dear Sofie,</p>
