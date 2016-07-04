@@ -11,6 +11,7 @@ module.exports = {
     './src/app.jsx'
   ],
   plugins: [
+    new webpack.NoErrorsPlugin(),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': '"production"'
     }),
@@ -39,6 +40,13 @@ module.exports = {
     filename: 'app.bundle.js'
   },
   module: {
+    preLoaders: [
+      {
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        loader: "eslint-loader"
+      }
+    ],
     loaders: [
       {
         test: /\.jsx?$/,

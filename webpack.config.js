@@ -48,7 +48,7 @@ module.exports = {
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        loader: "eslint-loader"
+        loader: "eslint-loader?{rules:{'no-console':0,'no-debugger':0,'no-restricted-syntax':0,'no-unused-vars':0}}"
       }
     ],
     loaders: [
