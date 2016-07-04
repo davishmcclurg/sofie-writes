@@ -9,6 +9,9 @@ import styles from 'styles/index.css'
 import defaultImage from 'images/rotating-photos.png'
 
 let Index = (props) => {
+  if (props.nextImage) {
+    (new Image()).src = props.nextImage
+  }
   const img = <img src={props.currentImage} alt="rotating photos" />
   let container = img
   if (props.currentImage !== defaultImage) {
@@ -27,5 +30,8 @@ Index = page({
 }, Index)
 
 export default connect(
-  (state) => ({ currentImage: state.rotatingPhotos.get('currentImage') })
+  (state) => ({
+    currentImage: state.rotatingPhotos.get('currentImage'),
+    nextImage: state.rotatingPhotos.get('nextImage'),
+  })
 )(Index)

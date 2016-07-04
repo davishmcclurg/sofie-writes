@@ -6,13 +6,12 @@ import thunk from 'redux-thunk'
 import { Router, Route, IndexRoute, hashHistory } from 'react-router'
 import { syncHistoryWithStore, routerReducer as routing } from 'react-router-redux'
 
+import { createTimer } from 'src/timer'
+
 import menu from 'reducers/menu'
 import pages, { addPages } from 'reducers/pages'
 import askSofie, { addEntries } from 'reducers/askSofie'
-import
-  rotatingPhotos,
-  { updateImages, delayedStartRotation, stopRotation }
-from 'reducers/rotatingPhotos'
+import rotatingPhotos, { updateImages, advanceImage } from 'reducers/rotatingPhotos'
 
 import Main from 'components/Main'
 import Index from 'components/Index'
@@ -58,15 +57,13 @@ const history = syncHistoryWithStore(hashHistory, store)
 const div = document.createElement('div')
 document.body.appendChild(div)
 
+const timer = createTimer(() => store.dispatch(advanceImage()))
+
 render(
   <Provider store={store}>
     <Router history={history}>
       <Route path="/" component={Main}>
-        <IndexRoute
-          component={Index}
-          onEnter={() => store.dispatch(delayedStartRotation())}
-          onLeave={() => store.dispatch(stopRotation())}
-        />
+        <IndexRoute component={Index} onEnter={() => timer.fastStart()} onLeave={timer.stop} />
         <Route path="ask-sofie" component={AskSofie} />
         <Route path="professional" component={Professional} />
         <Route path="writing" component={Writing} />
