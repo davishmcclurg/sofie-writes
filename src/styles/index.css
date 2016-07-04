@@ -3,11 +3,60 @@
   align-items: stretch;
 }
 
+.headingContainer {
+  composes: headingContainer from 'styles/page.css';
+}
+
+.headingContainer h1 {
+  font-size: 72px;
+  /*font-family: 'Bungee', cursive;*/
+  /*font-family: 'Bungee Shade', cursive;*/
+  /*font-family: 'Bungee Inline', cursive;*/
+
+  font-family: 'Bungee Outline', cursive;
+
+  color: #0c112d;
+  text-shadow: 12px -12px 0 #a1fdd3;
+  padding-top: 12px;
+
+  /*idea*/
+  /*color: #a1fdd3;*/
+  /*text-shadow: 0 72px 0 #0c112d;*/
+}
+
 .index img {
   display: block;
   width: 100%;
 }
 
 .nonDefaultImageContainer {
-  border: 10px double #0c112d;
+  position: relative;
+  background: #f3fec8;
+  border: 1px solid #0c112d;
+  padding: 12px;
+  box-shadow: -12px 12px 0 0 #a1fdd3;
 }
+
+/*
+.nonDefaultImageContainer:before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  top: 12px;
+  right: -12px;
+  bottom: 12px;
+  left: -12px;
+  background: #a1fdd3;
+}
+
+.nonDefaultImageContainer:after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  top: -12px;
+  right: 12px;
+  bottom: -12px;
+  left: 12px;
+  background: #a1fdd3;
+}
+*/

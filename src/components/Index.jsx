@@ -20,9 +20,10 @@ let Index = (props) => {
 }
 
 Index = page({
-  heading: 'Sofie Writes',
+  heading: 'Amateur Everything',
   home: false,
   pageContainerClassName: styles.pageContainer,
+  headingContainerClassName: styles.headingContainer,
 }, Index)
 
 export default connect(
