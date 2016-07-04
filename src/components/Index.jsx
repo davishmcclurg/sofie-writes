@@ -2,11 +2,16 @@
 
 /* eslint-disable jsx-a11y/img-redundant-alt */
 
-import styles from 'styles/index.css'
-import background from 'images/rotating-photos.png'
+import { connect } from 'react-redux'
 
-export default () => (
+import styles from 'styles/index.css'
+
+const Index = (props) => (
   <div className={styles.index}>
-    <img src={background} alt="rotating photos" />
+    <img src={props.currentImage} alt="rotating photos" />
   </div>
 )
+
+export default connect(
+  (state) => ({ currentImage: state.rotatingPhotos.get('currentImage') })
+)(Index)

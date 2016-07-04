@@ -3,9 +3,10 @@ import Contentful from 'contentful'
 const locale = 'en-US'
 const localizeFields = _.update('fields', _.mapValues(_.get(locale)))
 
-const client = Contentful.createClient({
-  space: 'jxtv3i31qnww',
-  accessToken: '19428d279377b1acf0cbaccf459d8e63f05ff61062440288e0365982d32e82db'
+export const client = Contentful.createClient({
+  host: 'preview.contentful.com',
+  space: '0maefx6qczs5',
+  accessToken: '9770a44501473cc2ed7bb19c6cc5556cfbebbd3c40baaf03dce4f8e3aa880f7b',
 })
 
 const sync = (() => {

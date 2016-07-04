@@ -7,6 +7,10 @@ import { Router, Route, IndexRoute, hashHistory } from 'react-router'
 import { syncHistoryWithStore, routerReducer as routing } from 'react-router-redux'
 
 import menu from 'reducers/menu'
+import
+  rotatingPhotos,
+  { addImages, delayedStartRotation, stopRotation }
+from 'reducers/rotatingPhotos'
 
 import Main from 'components/Main'
 import Index from 'components/Index'
@@ -19,12 +23,19 @@ import Headshots from 'components/Headshots'
 import Contact from 'components/Contact'
 
 const store = createStore(
-  combineReducers({ menu, routing }),
+  combineReducers({ menu, rotatingPhotos, routing }),
   compose(
     applyMiddleware(thunk),
     window.devToolsExtension ? window.devToolsExtension() : f => f
   )
 )
+
+import * as api from 'src/api'
+const rotatingPhotosEntryId = '56B762Mw1iuW2OQ60cgS0Y'
+api.client.getEntries({ 'sys.id': rotatingPhotosEntryId }).then((entries) => {
+  const images = entries.includes.Asset.map(i => i.fields.file.url)
+  store.dispatch(addImages(images))
+})
 
 const history = syncHistoryWithStore(hashHistory, store)
 
@@ -35,7 +46,11 @@ render(
   <Provider store={store}>
     <Router history={history}>
       <Route path="/" component={Main}>
-        <IndexRoute component={Index} />
+        <IndexRoute
+          component={Index}
+          onEnter={() => store.dispatch(delayedStartRotation())}
+          onLeave={() => store.dispatch(stopRotation())}
+        />
         <Route path="ask-sofie" component={AskSofie} />
         <Route path="professional" component={Professional} />
         <Route path="writing" component={Writing} />
