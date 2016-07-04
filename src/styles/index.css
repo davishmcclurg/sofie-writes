@@ -8,9 +8,12 @@
 }
 
 .headingContainer h1 {
+  font-family: 'Bungee Inline', cursive;
   font-size: 72px;
   text-shadow: 12px -12px 0 #a1fdd3;
   padding-top: 12px;
+
+  color: rgba(0, 0, 0, 0.75);
 
   /*idea*/
   /*color: #a1fdd3;*/
@@ -25,7 +28,7 @@
 .nonDefaultImageContainer {
   position: relative;
   background: #f3fec8;
-  border: 1px solid #0c112d;
+  border: 3px solid #0c112d;
   padding: 12px;
   box-shadow: -12px 12px 0 0 #a1fdd3;
 }
