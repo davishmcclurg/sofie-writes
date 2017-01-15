@@ -9,8 +9,7 @@ import { syncHistoryWithStore, routerReducer as routing } from 'react-router-red
 import { createTimer } from 'src/utils'
 
 import menu from 'reducers/menu'
-import pages, { addPages } from 'reducers/pages'
-import askSofie, { addEntries } from 'reducers/askSofie'
+import entries, { addEntries } from 'reducers/entries'
 import rotatingPhotos, { addImages, advanceImage } from 'reducers/rotatingPhotos'
 
 import Main from 'components/Main'
@@ -26,7 +25,7 @@ import Contact from 'components/Contact'
 import * as api from 'src/api'
 
 const store = createStore(
-  combineReducers({ menu, pages, rotatingPhotos, askSofie, routing }),
+  combineReducers({ menu, entries, rotatingPhotos, routing }),
   compose(
     applyMiddleware(thunk),
     window.devToolsExtension ? window.devToolsExtension() : f => f
@@ -34,22 +33,19 @@ const store = createStore(
 )
 
 const rotatingPhotosEntryId = '56B762Mw1iuW2OQ60cgS0Y'
-api.client.getEntries({ 'sys.id': rotatingPhotosEntryId }).then((entries) => {
-  const images = entries.includes.Asset.map(i => i.fields.file.url)
+api.client.getEntries({ 'sys.id': rotatingPhotosEntryId }).then((rotatingPhotoEntries) => {
+  const images = rotatingPhotoEntries.includes.Asset.map(i => i.fields.file.url)
   store.dispatch(addImages(images))
 })
 
-const askSofieContentTypeId = 'askSofie'
-api.client.getEntries({
-  content_type: askSofieContentTypeId,
-  order: '-sys.createdAt',
-}).then((entries) => {
-  store.dispatch(addEntries(entries.toPlainObject().items))
-})
-
-const pageContentTypeId = 'page'
-api.client.getEntries({ content_type: pageContentTypeId }).then((entries) => {
-  store.dispatch(addPages(entries.toPlainObject().items))
+const entryContentTypeIds = ['page', 'askSofie', 'writing', 'music', 'art']
+entryContentTypeIds.forEach(contentTypeId => {
+  api.client.getEntries({
+    content_type: contentTypeId,
+    order: '-sys.publishedAt',
+  }).then((contentTypeEntries) => {
+    store.dispatch(addEntries(contentTypeId, contentTypeEntries.toPlainObject().items))
+  })
 })
 
 const history = syncHistoryWithStore(hashHistory, store)

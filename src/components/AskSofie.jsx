@@ -23,5 +23,5 @@ let AskSofie = (props) => (
 AskSofie = page({ heading: 'Ask Sofie' }, AskSofie)
 
 export default connect(
-  (state) => ({ entries: state.askSofie.entries })
+  (state) => ({ entries: state.entries.askSofie })
 )(AskSofie)
