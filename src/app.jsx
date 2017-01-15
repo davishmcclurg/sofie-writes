@@ -11,7 +11,7 @@ import { createTimer } from 'src/utils'
 import menu from 'reducers/menu'
 import pages, { addPages } from 'reducers/pages'
 import askSofie, { addEntries } from 'reducers/askSofie'
-import rotatingPhotos, { updateImages, advanceImage } from 'reducers/rotatingPhotos'
+import rotatingPhotos, { addImages, advanceImage } from 'reducers/rotatingPhotos'
 
 import Main from 'components/Main'
 import Index from 'components/Index'
@@ -36,7 +36,7 @@ const store = createStore(
 const rotatingPhotosEntryId = '56B762Mw1iuW2OQ60cgS0Y'
 api.client.getEntries({ 'sys.id': rotatingPhotosEntryId }).then((entries) => {
   const images = entries.includes.Asset.map(i => i.fields.file.url)
-  store.dispatch(updateImages(images))
+  store.dispatch(addImages(images))
 })
 
 const askSofieContentTypeId = 'askSofie'

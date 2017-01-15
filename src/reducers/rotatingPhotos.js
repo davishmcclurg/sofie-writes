@@ -1,8 +1,7 @@
 import defaultImage from 'images/rotating-photos.png'
 
 const ADD_IMAGES = 'ADD_IMAGES'
-const SET_CURRENT_IMAGE = 'SET_CURRENT_IMAGE'
-const SET_NEXT_IMAGE = 'SET_NEXT_IMAGE'
+const ADVANCE_IMAGE = 'ADVANCE_IMAGE'
 
 const defaultState = {
   images: [defaultImage],
@@ -13,50 +12,37 @@ const defaultState = {
 export const addImages = (images) => ({
   type: ADD_IMAGES,
   images,
+  nextImageRandom: Math.random(),
 })
 
-export const setCurrentImage = (currentImage) => ({
-  type: SET_CURRENT_IMAGE,
-  currentImage,
+export const advanceImage = () => ({
+  type: ADVANCE_IMAGE,
+  currentImageRandom: Math.random(),
+  nextImageRandom: Math.random(),
 })
 
-export const setNextImage = (nextImage) => ({
-  type: SET_NEXT_IMAGE,
-  nextImage,
-})
-
-const getRandomImage = (state) => {
-  const stateImages = state.rotatingPhotos.images
-  return stateImages[Math.floor(Math.random() * stateImages.length)]
-}
-
-export const advanceImage = () => (dispatch, getState) => {
-  const nextImage = getState().rotatingPhotos.nextImage || getRandomImage(getState())
-  dispatch(setCurrentImage(nextImage))
-  dispatch(setNextImage(getRandomImage(getState())))
-}
-
-export const updateImages = (images) => (dispatch, getState) => {
-  dispatch(addImages(images))
-  dispatch(setNextImage(getRandomImage(getState())))
+const sample = (array, random) => {
+  if (!array || !array.length) {
+    return null
+  }
+  return array[Math.floor(random * array.length)]
 }
 
 export default (state = defaultState, action) => {
   switch (action.type) {
-    case ADD_IMAGES:
+    case ADD_IMAGES: {
+      const images = state.images.concat(action.images)
       return {
         ...state,
-        images: state.images.concat(action.images),
+        images,
+        nextImage: sample(images, action.nextImageRandom),
       }
-    case SET_CURRENT_IMAGE:
+    }
+    case ADVANCE_IMAGE:
       return {
         ...state,
-        currentImage: action.currentImage,
-      }
-    case SET_NEXT_IMAGE:
-      return {
-        ...state,
-        nextImage: action.nextImage,
+        currentImage: state.nextImage || sample(state.images, action.currentImageRandom),
+        nextImage: sample(state.images, action.nextImageRandom),
       }
     default:
       return state
