@@ -1,0 +1,13 @@
+.assetContainer {
+  display: inline-block;
+  border: 3px solid #0c112d;
+  padding: 12px;
+  box-shadow: -12px 12px 0 0 #a1fdd3;
+  margin-bottom: 36px;
+}
+
+.assetContainer img,
+.assetContainer audio,
+.assetContainer video {
+  display: block;
+}

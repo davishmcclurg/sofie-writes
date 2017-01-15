@@ -10,7 +10,7 @@ const MusicEntry = (props) => (
   <div key={props.sys.id}>
     <h1>{props.fields.title}</h1>
     <Markdown source={props.fields.content} />
-    {props.fields.media.map(Media)}
+    {props.fields.media.map((media, index) => <Media key={index} {...media} />)}
   </div>
 )
 

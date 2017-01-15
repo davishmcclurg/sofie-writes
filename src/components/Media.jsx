@@ -1,14 +1,24 @@
-export default (props) => {
+import styles from 'styles/media.css'
+
+const mediaElement = (props) => {
   const url = props.fields.file.url
-  const fallback = <a key={props.sys.id} href={url}>{props.fields.title}</a>
+  const fallback = <a href={url}>{props.fields.title}</a>
   switch (props.fields.file.contentType.split('/')[0]) {
     case 'image':
-      return <img key={props.sys.id} src={url} alt={props.fields.title} />
+      return <img src={url} alt={props.fields.title} />
     case 'audio':
-      return <audio key={props.sys.id} src={url} preload="metadata" controls>{fallback}</audio>
+      return <audio src={url} preload="metadata" controls>{fallback}</audio>
     case 'video':
-      return <video key={props.sys.id} src={url} controls>{fallback}</video>
+      return <video src={url} controls>{fallback}</video>
     default:
       return fallback
   }
 }
+
+export default (props) => (
+  <div>
+    <div className={styles.assetContainer}>
+      {mediaElement(props)}
+    </div>
+  </div>
+)

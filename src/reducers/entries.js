@@ -4,6 +4,8 @@ const defaultState = {
   page: [],
   askSofie: [],
   writing: [],
+  music: [],
+  art: [],
 }
 
 export const getPageContent = (state, pageId) => {
