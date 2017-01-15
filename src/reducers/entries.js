@@ -7,7 +7,7 @@ const defaultState = {
 }
 
 export const getPageContent = (state, pageId) => {
-  const page = state.entries.page.find(entry => entry.sys.id === pageId)
+  const page = state.entries.page.find((entry) => entry.sys.id === pageId)
   return page ? page.fields.content : null
 }
 

@@ -17,7 +17,7 @@ const sync = (() => {
   let nextSyncToken
   return () => client
     .sync(nextSyncToken ? { nextSyncToken } : { initial: true })
-    .then(response => {
+    .then((response) => {
       nextSyncToken = response.nextSyncToken
       return response
     })
@@ -28,7 +28,7 @@ const cachedSync = (() => {
   const entries = new Set()
   const assets = new Set()
   return () => {
-    cachedResponse = cachedResponse || sync().then(response => {
+    cachedResponse = cachedResponse || sync().then((response) => {
       response.entries.map(localizeFields).forEach(entries.add.bind(entries))
       response.assets.forEach(assets.add.bind(assets))
       return {

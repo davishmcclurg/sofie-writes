@@ -9,7 +9,7 @@ import page from 'components/page'
 
 let AskSofie = (props) => (
   <div>
-    {props.entries.map(entry => (
+    {props.entries.map((entry) => (
       <div key={entry.sys.id}>
         <h1>{entry.fields.title}</h1>
         <Markdown source={entry.fields.question} softBreak="br" />
