@@ -19,7 +19,6 @@ module.exports = {
     }),
     new webpack.ProvidePlugin({
       React: 'react',
-      Immutable: 'immutable',
       _: 'lodash/fp'
     })
   ],

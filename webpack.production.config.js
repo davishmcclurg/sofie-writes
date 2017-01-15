@@ -20,7 +20,6 @@ module.exports = {
     }),
     new webpack.ProvidePlugin({
       React: 'react',
-      Immutable: 'immutable',
       _: 'lodash/fp'
     }),
     new ExtractTextPlugin('styles.css')

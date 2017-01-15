@@ -8,5 +8,7 @@ import page from 'components/page'
 const Professional = page({ heading: 'Professional' }, Markdown)
 
 export default connect(
-  (state) => ({ source: state.pages.getIn(['professional', 'fields', 'content'], 'Loading...') })
+  (state) => ({
+    source: ((state.pages.professional && state.pages.professional.fields.content) || 'Loading...'),
+  })
 )(Professional)

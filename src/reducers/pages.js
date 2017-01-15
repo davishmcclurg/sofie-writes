@@ -1,9 +1,9 @@
 const ADD_PAGES = 'ADD_PAGES'
 
-const defaultState = Immutable.fromJS({
+const defaultState = {
   professional: null,
   contact: null,
-})
+}
 
 const professionalPageId = '6akvaZcv9mqKECaCMiUY8m'
 const contactPageId = '69DVsXod44QKOSqWaacIUy'
@@ -18,10 +18,11 @@ export default (state = defaultState, action) => {
     case ADD_PAGES: {
       const actionProfessional = action.pages.find(page => page.sys.id === professionalPageId)
       const actionContact = action.pages.find(page => page.sys.id === contactPageId)
-      return state.merge({
-        professional: actionProfessional || state.get('professional'),
-        contact: actionContact || state.get('contact'),
-      })
+      return {
+        ...state,
+        professional: actionProfessional || state.professional,
+        contact: actionContact || state.contact,
+      }
     }
     default:
       return state

@@ -1,4 +1,4 @@
-const defaultState = Immutable.fromJS([
+const defaultState = [
   {
     id: 'ask-sofie',
     text: 'ask sofie',
@@ -41,6 +41,6 @@ const defaultState = Immutable.fromJS([
     path: '/contact',
     image: require('images/contact.png'),
   },
-])
+]
 
 export default (state = defaultState) => state

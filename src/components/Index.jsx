@@ -31,7 +31,7 @@ Index = page({
 
 export default connect(
   (state) => ({
-    currentImage: state.rotatingPhotos.get('currentImage'),
-    nextImage: state.rotatingPhotos.get('nextImage'),
+    currentImage: state.rotatingPhotos.currentImage,
+    nextImage: state.rotatingPhotos.nextImage,
   })
 )(Index)

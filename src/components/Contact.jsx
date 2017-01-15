@@ -8,5 +8,7 @@ import page from 'components/page'
 const Contact = page({ heading: 'Contact' }, Markdown)
 
 export default connect(
-  (state) => ({ source: state.pages.getIn(['contact', 'fields', 'content'], 'Loading...') })
+  (state) => ({
+    source: ((state.pages.contact && state.pages.contact.fields.content) || 'Loading...'),
+  })
 )(Contact)

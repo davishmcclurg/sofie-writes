@@ -5,7 +5,7 @@ import 'normalize.css'
 import styles from 'styles/main.css'
 
 const MenuContainer = connect(
-  (state) => ({ items: state.menu.toJS() })
+  (state) => ({ items: state.menu })
 )(Menu)
 
 export default (props) => (
