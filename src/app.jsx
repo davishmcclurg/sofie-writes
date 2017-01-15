@@ -22,7 +22,7 @@ import Art from 'components/Art'
 import Headshots from 'components/Headshots'
 import Contact from 'components/Contact'
 
-import * as api from 'src/api'
+import api from 'src/api'
 
 const store = createStore(
   combineReducers({ menu, entries, rotatingPhotos, routing }),
@@ -33,14 +33,14 @@ const store = createStore(
 )
 
 const rotatingPhotosEntryId = '56B762Mw1iuW2OQ60cgS0Y'
-api.client.getEntries({ 'sys.id': rotatingPhotosEntryId }).then((rotatingPhotoEntries) => {
+api.getEntries({ 'sys.id': rotatingPhotosEntryId }).then((rotatingPhotoEntries) => {
   const images = rotatingPhotoEntries.includes.Asset.map((i) => i.fields.file.url)
   store.dispatch(addImages(images))
 })
 
 const entryContentTypeIds = ['page', 'askSofie', 'writing', 'music', 'art']
 entryContentTypeIds.forEach((contentTypeId) => {
-  api.client.getEntries({
+  api.getEntries({
     content_type: contentTypeId,
     order: '-sys.publishedAt',
   }).then((contentTypeEntries) => {
