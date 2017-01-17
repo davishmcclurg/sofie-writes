@@ -3,7 +3,6 @@ const ADD_ENTRIES = 'ADD_ENTRIES'
 const defaultState = {
   page: [],
   askSofie: [],
-  writing: [],
   music: [],
   art: [],
 }

@@ -38,7 +38,7 @@ api.getEntries({ 'sys.id': rotatingPhotosEntryId }).then((rotatingPhotoEntries) 
   store.dispatch(addImages(images))
 })
 
-const entryContentTypeIds = ['page', 'askSofie', 'writing', 'music', 'art']
+const entryContentTypeIds = ['page', 'askSofie', 'music', 'art']
 entryContentTypeIds.forEach((contentTypeId) => {
   api.getEntries({
     content_type: contentTypeId,
