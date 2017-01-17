@@ -6,21 +6,21 @@ import { getPageContent } from 'reducers/entries'
 import page from 'components/page'
 import Markdown from 'components/Markdown'
 
-let AskSofie = (props) => (
-  <div>
-    <Markdown source={props.source} />
-    {props.entries.map((entry) => (
-      <div key={entry.sys.id}>
-        <h2>{entry.fields.title}</h2>
-        <Markdown source={entry.fields.question} />
-        <hr />
-        <Markdown source={entry.fields.answer} />
-      </div>
-    ))}
+const AskSofieEntry = (props) => (
+  <div key={props.sys.id}>
+    <h2>{props.fields.title}</h2>
+    <Markdown source={props.fields.question} />
+    <hr />
+    <Markdown source={props.fields.answer} />
   </div>
 )
 
-AskSofie = page({ heading: 'Ask Sofie' }, AskSofie)
+const AskSofie = page({ heading: 'Ask Sofie' }, (props) => (
+  <div>
+    <Markdown source={props.source} />
+    {props.entries.map(AskSofieEntry)}
+  </div>
+))
 
 export default connect(
   (state) => ({
