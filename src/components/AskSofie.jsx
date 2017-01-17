@@ -1,10 +1,10 @@
 // advice column with email contact form
 
 import { connect } from 'react-redux'
-import Markdown from 'react-markdown'
 import { getPageContent } from 'reducers/entries'
 
 import page from 'components/page'
+import Markdown from 'components/Markdown'
 
 let AskSofie = (props) => (
   <div>
@@ -12,9 +12,9 @@ let AskSofie = (props) => (
     {props.entries.map((entry) => (
       <div key={entry.sys.id}>
         <h2>{entry.fields.title}</h2>
-        <Markdown source={entry.fields.question} softBreak="br" />
+        <Markdown source={entry.fields.question} />
         <hr />
-        <Markdown source={entry.fields.answer} softBreak="br" />
+        <Markdown source={entry.fields.answer} />
       </div>
     ))}
   </div>

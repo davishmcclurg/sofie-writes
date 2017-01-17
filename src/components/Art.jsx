@@ -1,11 +1,11 @@
 // audio/video gallery with link to tumblr
 
 import { connect } from 'react-redux'
-import Markdown from 'react-markdown'
 import { getPageContent } from 'reducers/entries'
 
 import page from 'components/page'
 import Media from 'components/Media'
+import Markdown from 'components/Markdown'
 
 const ArtEntry = (props) => (
   <div key={props.sys.id}>

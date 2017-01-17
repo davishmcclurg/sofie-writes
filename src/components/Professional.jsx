@@ -1,10 +1,10 @@
 // resume
 
 import { connect } from 'react-redux'
-import Markdown from 'react-markdown'
 import { getPageContent } from 'reducers/entries'
 
 import page from 'components/page'
+import Markdown from 'components/Markdown'
 
 const Professional = page({ heading: 'Professional' }, Markdown)
 

@@ -1,10 +1,10 @@
 // contact information and email form
 
 import { connect } from 'react-redux'
-import Markdown from 'react-markdown'
 import { getPageContent } from 'reducers/entries'
 
 import page from 'components/page'
+import Markdown from 'components/Markdown'
 
 const Contact = page({ heading: 'Contact' }, Markdown)
 
