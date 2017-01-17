@@ -24,7 +24,7 @@ const AskSofie = page({ heading: 'Ask Sofie' }, (props) => (
 
 export default connect(
   (state) => ({
-    source: (getPageContent(state, '2idyqdUb2UycUMwAM4sqWq') || 'Loading...'),
+    source: getPageContent(state, '2idyqdUb2UycUMwAM4sqWq', 'Loading...'),
     entries: state.entries.askSofie,
   })
 )(AskSofie)

@@ -7,9 +7,12 @@ const defaultState = {
   art: [],
 }
 
-export const getPageContent = (state, pageId) => {
+export const getPageContent = (state, pageId, notFoundContent = null, emptyContent = '') => {
   const page = state.entries.page.find((entry) => entry.sys.id === pageId)
-  return page ? page.fields.content : null
+  if (page) {
+    return page.fields.content || emptyContent
+  }
+  return notFoundContent
 }
 
 export const addEntries = (contentTypeId, entries) => ({

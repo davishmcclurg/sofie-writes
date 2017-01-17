@@ -10,6 +10,6 @@ const Professional = page({ heading: 'Professional' }, Markdown)
 
 export default connect(
   (state) => ({
-    source: (getPageContent(state, '6akvaZcv9mqKECaCMiUY8m') || 'Loading...'),
+    source: getPageContent(state, '6akvaZcv9mqKECaCMiUY8m', 'Loading...'),
   })
 )(Professional)

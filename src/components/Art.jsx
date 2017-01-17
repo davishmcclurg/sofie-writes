@@ -10,7 +10,7 @@ import Markdown from 'components/Markdown'
 const ArtEntry = (props) => (
   <div key={props.sys.id}>
     <h2>{props.fields.title}</h2>
-    <Markdown source={props.fields.content} />
+    <Markdown source={props.fields.content || ''} />
     {props.fields.media.map((media, index) => <Media key={index} {...media} />)}
   </div>
 )
@@ -24,7 +24,7 @@ const Art = page({ heading: 'Art' }, (props) => (
 
 export default connect(
   (state) => ({
-    source: (getPageContent(state, '6noBK9MXAc4oKogUAoQIES') || 'Loading...'),
+    source: getPageContent(state, '6noBK9MXAc4oKogUAoQIES', 'Loading...'),
     entries: state.entries.art,
   })
 )(Art)

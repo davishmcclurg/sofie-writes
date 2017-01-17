@@ -10,6 +10,6 @@ const Writing = page({ heading: 'Writing' }, Markdown)
 
 export default connect(
   (state) => ({
-    source: (getPageContent(state, '5wW1qQ0KBOMQUyGoqe4gC0') || 'Loading...'),
+    source: getPageContent(state, '5wW1qQ0KBOMQUyGoqe4gC0', 'Loading...'),
   })
 )(Writing)

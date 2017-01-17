@@ -10,7 +10,7 @@ import Media from 'components/Media'
 const MusicEntry = (props) => (
   <div key={props.sys.id}>
     <h2>{props.fields.title}</h2>
-    <Markdown source={props.fields.content} />
+    <Markdown source={props.fields.content || ''} />
     {props.fields.media.map((media, index) => <Media key={index} {...media} />)}
   </div>
 )
@@ -24,7 +24,7 @@ const Music = page({ heading: 'Music' }, (props) => (
 
 export default connect(
   (state) => ({
-    source: (getPageContent(state, 'pO8tpNIPqouWuuWmKGska') || 'Loading...'),
+    source: getPageContent(state, 'pO8tpNIPqouWuuWmKGska', 'Loading...'),
     entries: state.entries.music,
   })
 )(Music)

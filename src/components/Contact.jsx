@@ -10,6 +10,6 @@ const Contact = page({ heading: 'Contact' }, Markdown)
 
 export default connect(
   (state) => ({
-    source: (getPageContent(state, '69DVsXod44QKOSqWaacIUy') || 'Loading...'),
+    source: getPageContent(state, '69DVsXod44QKOSqWaacIUy', 'Loading...'),
   })
 )(Contact)
