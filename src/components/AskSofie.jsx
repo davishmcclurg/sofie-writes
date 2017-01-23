@@ -6,8 +6,10 @@ import { getPageContent } from 'reducers/entries'
 import page from 'components/page'
 import Markdown from 'components/Markdown'
 
+import { entry } from 'styles/entry.css'
+
 const AskSofieEntry = (props) => (
-  <div key={props.sys.id}>
+  <div key={props.sys.id} className={entry}>
     <h2>{props.fields.title}</h2>
     <Markdown source={props.fields.question} />
     <hr />

@@ -7,8 +7,10 @@ import page from 'components/page'
 import Markdown from 'components/Markdown'
 import Media from 'components/Media'
 
+import { entry } from 'styles/entry.css'
+
 const MusicEntry = (props) => (
-  <div key={props.sys.id}>
+  <div key={props.sys.id} className={entry}>
     <h2>{props.fields.title}</h2>
     <Markdown source={props.fields.content || ''} />
     {props.fields.media.map((media, index) => <Media key={index} {...media} />)}
