@@ -42,7 +42,7 @@ const entryContentTypeIds = ['page', 'askSofie', 'music', 'art']
 entryContentTypeIds.forEach((contentTypeId) => {
   api.getEntries({
     content_type: contentTypeId,
-    order: '-sys.publishedAt',
+    order: '-sys.updatedAt',
   }).then((contentTypeEntries) => {
     store.dispatch(addEntries(contentTypeId, contentTypeEntries.toPlainObject().items))
   })
